@@ -1,0 +1,1065 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Business Intelligence}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{quote}
+Universidade Federal da Bahia
+\end{quote}
+
+\begin{quote}
+Instituto de Matemática e Estatística
+\end{quote}
+
+\begin{quote}
+Departamento de Ciência da Computação
+\end{quote}
+
+\begin{quote}
+MATA60 - Banco de Dados
+\end{quote}
+
+\begin{quote}
+Docente: Vaninha Vieira
+\end{quote}
+
+\begin{quote}
+Alunos: Angelmário Santana, Tassia Silva e Litiano Moura
+\end{quote}
+
+\begin{quote}
+Data: 31 de Maio de 2018
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+\subsection{Tema: Business
+Intelligence}\label{tema-business-intelligence}
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\mbox{}%
+\paragraph{RELATÓRIO DA ANÁLISE ESTATÍSTICA DA BASE DE DADOS SOBRE
+PEDIDOS DE ALIMENTO REALIZADOS POR APLICATIVO NO 2° SEMESTRE DE
+2016.}\label{relatuxf3rio-da-anuxe1lise-estatuxedstica-da-base-de-dados-sobre-pedidos-de-alimento-realizados-por-aplicativo-no-2-semestre-de-2016.}
+\end{quote}
+\end{quote}
+\end{quote}
+
+    \paragraph{Introdução}\label{introduuxe7uxe3o}
+
+Nos últimos anos um mercado que vem chamando a atenção de investidores é
+o mercado de delivery, que está cada vez mais virando tendência entre os
+brasileiros. Segundo a Associação Brasileira de Bares e Restaurantes
+(ABRASEL) já em 2015, o mercado brasileiro movimentava 9 bilhões de
+reais por ano, em 2017 o faturamento passou dos 10 bilhões.
+
+Muitos estabelecimentos que tinha apenas espaços físicos, têm investido
+no serviço de delivery para atrair clientes e aumentar o faturamento. O
+SEBRAE reforça a preferência dos consumidores por lugares que ofereçam
+entrega em domicílio, e afirma que 12\%, segundo pesquisa realizada, não
+possuem nem loja física, trabalhando apenas com entregas inclusive por
+aplicativos.
+
+Muitos consumidores entrevistados afirmaram que pelo comodismo de não
+ter que enfrentar o trânsito e pelas taxas de como estacionamento e
+outras, faz mais sentido ir no aplicativo e escolher no cardápio
+diversificado, a facilidade de ver vários tipos de comida com apenas
+alguns cliques. Mesmo havendo taxa de entrega, ainda sim vale a pena
+conferir as ofertas oferecidas pelas lojas nos aplicativos.
+
+Neste trabalho, foi nos concedido uma base de dados que mostra a
+respeito das entregas de alimentos em algumas cidades brasileiras com
+intuito de inferir informações a respeito e aplicar Business
+Intelligence.
+
+    \paragraph{1. Analisando os dados por meio
+estatístico}\label{analisando-os-dados-por-meio-estatuxedstico}
+
+Após pesquisar sobre o assunto, foi realizada uma análise na base da
+equipe. Foi necessário analisar os atributos da base para entender o
+comportamento dos dados. A equipe contou com ajuda do
+\href{http://jupyter.org/}{Jupyter Notebook} que através de programação
+em Python nos ajudou a manipular os dados e desenvolver os gráficos que
+serão apresentados a seguir para construção do trabalho.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{statsmodels} \PY{k}{as} \PY{n+nn}{st}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{from} \PY{n+nn}{pandas}\PY{n+nn}{.}\PY{n+nn}{plotting} \PY{k}{import} \PY{n}{table}
+        \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{widgets}
+        \PY{k+kn}{import} \PY{n+nn}{datetime}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{}Carregando a base de dados}
+        \PY{n}{base} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{aplicativo.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{1.1} O primeiro passo foi observar a base de dados para obter
+uma visão geral dos atributos que existem na base.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{}5 primeiros registros \PYZhy{} Visão inicial dos dados}
+        \PY{n}{base}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:}   DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
+        0  2016-07-05       19:51     Sunday            16.0           4.0   
+        1  2016-07-05       20:58     Sunday            28.0           4.0   
+        2  2016-07-05       21:35     Sunday            13.0           4.0   
+        3  2016-07-06       23:22     Monday            11.5           4.0   
+        4  2016-07-07       20:08    Tuesday            19.0           4.0   
+        
+           TOTAL\_PEDIDO FORMA\_PAGAMENTO  AVALIACAO    STATUS  ID\_ESTABELECIMENTO  \textbackslash{}
+        0          20.0        Dinheiro        NaN  Entregue                  16   
+        1          32.0        Dinheiro        NaN  Recusado                  16   
+        2          17.0        Dinheiro        NaN  Recusado                  16   
+        3          15.5        Dinheiro        NaN  Entregue                  16   
+        4          23.0        Dinheiro        NaN  Recusado                  16   
+        
+          TIPO\_ESTABELECIMENTO  ID\_USUARIO DDD\_USUARIO DATA\_CADASTRO\_USUARIO  \textbackslash{}
+        0           Lanchonete       50720          77            2016-07-05   
+        1           Lanchonete       48784          77            2016-06-18   
+        2           Lanchonete        7016          77            2015-08-10   
+        3           Lanchonete       48536          77            2016-06-15   
+        4           Lanchonete       21160          77            2015-12-21   
+        
+          PRIMEIRO\_PEDIDO BAIRRO\_USUARIO        CIDADE\_USUARIO SO\_DISPOSITIVO  
+        0             Sim        Ipanema  Vitória da Conquista        Android  
+        1             Não       Candeias  Vitória da Conquista            iOS  
+        2             Não        Urbis I  Vitória da Conquista        Android  
+        3             Não     Alto Maron  Vitória da Conquista        Android  
+        4             Não       Candeias  Vitória da Conquista        Android  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}Gráfico que exibe a quantidade valores ausentes }
+        \PY{c+c1}{\PYZsh{}para cada atributo da base}
+        
+        \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}
+        \PY{n}{font\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{15}
+        \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
+                                     \PY{n+nb}{sum}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{ax8} \PY{o}{=}  \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{colspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{grafico} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   
+                               \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{,} 
+                               \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                               \PY{n}{edgecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                               \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores ausentes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}
+        \PY{n}{df}
+        \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax8}\PY{p}{,} \PY{n}{df}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
+        \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
+        \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{1.5} No gráficos de histograma, é possível através de atributos
+numéricos observar a distribuição na base de dados
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{}Histograma dos atributos numéricos para }
+         \PY{c+c1}{\PYZsh{}observar a distribuição na base de dados.}
+         
+         \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}
+         \PY{n}{font\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{15}
+         
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
+         \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
+         \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}  \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taxa de entrega}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{223}\PY{p}{)}
+         \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ID\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{ax8} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{224}\PY{p}{)}
+         
+         \PY{n}{dff}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade de pedidos por usuário}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} Text(0.5,1,'Quantidade de pedidos por usuário')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}base.describe()}
+        \PY{c+c1}{\PYZsh{}min(base[\PYZsq{}DATA\PYZus{}PEDIDO\PYZsq{}])}
+        \PY{c+c1}{\PYZsh{}max(base[\PYZsq{}DATA\PYZus{}PEDIDO\PYZsq{}])}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} Formas de pagamentos e a respectiva quantidade,}
+         \PY{c+c1}{\PYZsh{} dado que o status do pedido é Recusado.}
+         
+         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais as formas de pagamento e a quantidade, }
+         \PY{c+c1}{\PYZsh{} que os pedidos foram recusados?}
+         
+         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Recusado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:}             Quantidade
+         ID\_USUARIO            
+         40872              100
+         27784               79
+         10392               79
+         41408               78
+         41304               73
+         6856                71
+         264                 68
+         37264               66
+         14480               65
+         44328               64
+         29872               58
+         38200               56
+         46048               55
+         6256                55
+         29408               52
+         32368               52
+         50648               51
+         53288               50
+         11232               50
+         15488               49
+         47128               48
+         29888               48
+         20976               47
+         49856               47
+         21536               47
+         24912               46
+         19304               45
+         1568                45
+         11008               45
+         53352               45
+         {\ldots}                {\ldots}
+         58472                1
+         58464                1
+         58456                1
+         15208                1
+         15280                1
+         49456                1
+         58656                1
+         14432                1
+         58760                1
+         58880                1
+         14488                1
+         14504                1
+         49232                1
+         49240                1
+         32480                1
+         58792                1
+         32416                1
+         14624                1
+         58752                1
+         32384                1
+         49344                1
+         58736                1
+         58728                1
+         14704                1
+         58712                1
+         49360                1
+         58688                1
+         58680                1
+         58672                1
+         70176                1
+         
+         [4530 rows x 1 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Formas de pagamentos e a respectiva quantidade,}
+         \PY{c+c1}{\PYZsh{} dado que o tipo de estabelecimento do pedido é Lanchonete.}
+         
+         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quantos estabelecimentos do}
+         \PY{c+c1}{\PYZsh{} tipo lanchonete tem na base de dados?}
+         
+         
+         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lanchonete}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:}                  Quantidade
+         FORMA\_PAGAMENTO            
+         Dinheiro               5066
+         Cartão                 2121
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} Obter o registro em que a cidade seja Vitória da Conquista, }
+         \PY{c+c1}{\PYZsh{} a comida é japonesa e o valor é 274.20}
+         
+         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vitória da Conquista}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} 
+                     \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Comida Japonesa}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                    \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mf}{274.20}\PY{p}{)}
+                    \PY{p}{]}
+         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{filt}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:}       DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
+         21612  2016-08-07       19:44     Friday           274.2           3.0   
+         
+                TOTAL\_PEDIDO FORMA\_PAGAMENTO  AVALIACAO    STATUS  ID\_ESTABELECIMENTO  \textbackslash{}
+         21612         277.2          Cartão        NaN  Entregue                 280   
+         
+               TIPO\_ESTABELECIMENTO  ID\_USUARIO DDD\_USUARIO DATA\_CADASTRO\_USUARIO  \textbackslash{}
+         21612      Comida Japonesa       55080          77            2016-08-07   
+         
+               PRIMEIRO\_PEDIDO BAIRRO\_USUARIO        CIDADE\_USUARIO SO\_DISPOSITIVO  
+         21612             Sim      Boa Vista  Vitória da Conquista        Android  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Obter os valores dos produtos e a respectiva quantidade, da cidade de Vitória da}
+         \PY{c+c1}{\PYZsh{} Conquista e que o tipo de estabelecimento seja Acarajé}
+         
+         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais valores e quantos produtos }
+         \PY{c+c1}{\PYZsh{} do respectivo valor, do tipo de estabelecimento lanchonete }
+         \PY{c+c1}{\PYZsh{} na cidade de Vitória da conquista}
+         
+         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vitória da Conquista}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} 
+                     \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Acarajé}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:}                 Quantidade
+         VALOR\_PRODUTOS            
+         37.0                    11
+         35.0                     1
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{}Obter os tipos de estabelecimento e as suas respectivas quantidades}
+         \PY{c+c1}{\PYZsh{} da cidade de Vitória da Conquista.}
+         
+         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Na cidade de vitória da conquista}
+         \PY{c+c1}{\PYZsh{} quais e quantos são os tipos de estabelecimentos?}
+         
+         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vitória da Conquista}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:}                                Quantidade
+         TIPO\_ESTABELECIMENTO                     
+         Lanchonete                           7065
+         Pizzaria                             3733
+         Marmitex                             3491
+         Comida Natural                       2128
+         Restaurante                          1975
+         Comida Japonesa                      1152
+         Pizzaria/Esfiharia                   1075
+         Restaurante/Tapiocaria                573
+         Hot-Dog                               450
+         Sopas                                 413
+         Pizzaria/Lanchonete                   359
+         Culinária Oriental                    332
+         Doceria                               274
+         Picoleteria                           252
+         Espetinhos                            213
+         Tapiocaria                            115
+         Pães e Bolos                          109
+         Pizzaria/Esfiharia/Pastelaria         104
+         Saladas                                34
+         Comida Árabe                           30
+         Acarajé                                12
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{}Obter as cidades do usuário e suas respectivas quantidades}
+         \PY{c+c1}{\PYZsh{} na base de dados}
+         
+         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais e quantas cidades tem na }
+         \PY{c+c1}{\PYZsh{} base de dados?}
+         
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{df}
+         \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:}                       Quantidade
+         CIDADE\_USUARIO                  
+         Vitória da Conquista       23889
+         Ibicaraí                     103
+         Brumado                       71
+         Mortugaba                     35
+         Sorocaba                       1
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{}Obter as cidades do usuário e suas respectivas quantidades}
+         \PY{c+c1}{\PYZsh{} dado que o tipo de estabelecimento lanchonete.}
+         
+         \PY{c+c1}{\PYZsh{} Pergunta para ser respondida: Em quais cidades e qual a quantidade, tem lanchonete?}
+         
+         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lanchonete}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:}                       Quantidade
+         CIDADE\_USUARIO                  
+         Vitória da Conquista        7065
+         Ibicaraí                      62
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais e quantos são os valores de}
+         \PY{c+c1}{\PYZsh{} produtos do tipo de estabelecimento lanchonete?}
+         
+         
+         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lanchonete}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:}                 Quantidade
+         VALOR\_PRODUTOS            
+         13.00                  353
+         20.90                  327
+         11.00                  315
+         15.00                  260
+         22.00                  240
+         19.00                  220
+         18.00                  209
+         12.00                  192
+         14.00                  190
+         17.00                  190
+         9.50                   189
+         20.00                  186
+         26.00                  166
+         16.00                  158
+         10.00                  153
+         21.00                  153
+         24.00                  141
+         12.50                  140
+         10.50                  114
+         30.00                  109
+         15.90                   98
+         23.00                   96
+         16.50                   96
+         14.50                   87
+         8.00                    86
+         25.00                   85
+         30.90                   80
+         11.50                   80
+         20.50                   74
+         16.90                   67
+         {\ldots}                    {\ldots}
+         42.80                    1
+         43.40                    1
+         43.80                    1
+         47.80                    1
+         48.30                    1
+         48.70                    1
+         48.80                    1
+         49.30                    1
+         49.50                    1
+         38.40                    1
+         37.99                    1
+         37.90                    1
+         34.60                    1
+         30.75                    1
+         31.25                    1
+         31.30                    1
+         31.40                    1
+         32.40                    1
+         33.90                    1
+         34.30                    1
+         34.95                    1
+         37.30                    1
+         34.97                    1
+         35.40                    1
+         35.70                    1
+         35.80                    1
+         35.90                    1
+         36.80                    1
+         36.90                    1
+         139.70                   1
+         
+         [321 rows x 1 columns]
+\end{Verbatim}
+            
+    \textbf{1.3} Verificamos que pela quantidade de pedidos realizados sobre
+o estabelecimento, lanchonete recebeu a maior parte das vendas mesmo
+sendo bastante distribuído os dados referentes aos outros
+estabelecimentos.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais e quantos tipos}
+         \PY{c+c1}{\PYZsh{} de estabelecimentos tem na base de dados?}
+         
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{df}
+         \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:}                                Quantidade
+         TIPO\_ESTABELECIMENTO                     
+         Lanchonete                           7187
+         Pizzaria                             3763
+         Marmitex                             3597
+         Comida Natural                       2135
+         Restaurante                          2006
+         Comida Japonesa                      1167
+         Pizzaria/Esfiharia                   1103
+         Restaurante/Tapiocaria                584
+         Pizzaria/Lanchonete                   455
+         Hot-Dog                               451
+         Sopas                                 419
+         Culinária Oriental                    334
+         Doceria                               274
+         Picoleteria                           252
+         Espetinhos                            213
+         Tapiocaria                            129
+         Pães e Bolos                          109
+         Pizzaria/Esfiharia/Pastelaria         105
+         Saladas                                34
+         Comida Árabe                           30
+         Acarajé                                12
+\end{Verbatim}
+            
+    \textbf{1.4} Foi verificado também pelo gráfico que a maioria dos
+pedidos entregues foram pagos pela forma de pagamento em dinheiro. Mesmo
+assim, vimos que poucos pedidos foram recusados.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.color}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{14}
+         \PY{n}{font\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{14}
+         \PY{n}{d1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{d1}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+         
+         
+         \PY{n}{colors} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellowgreen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{} plot chart}
+         \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
+         \PY{n}{grafico} \PY{o}{=} \PY{n}{d1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                           \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,} \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+                          \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,} 
+                           \PY{n}{colors} \PY{o}{=} \PY{n}{colors}\PY{p}{,} 
+                           \PY{n}{legend} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{,} \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Formas de pagamento}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{fontsize}\PY{p}{\PYZcb{}}\PY{p}{)}
+         
+         \PY{n}{d2} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{d2}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
+         \PY{n}{grafico} \PY{o}{=} \PY{n}{d2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                           \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,} \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} 
+                            \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} 
+                           \PY{n}{colors} \PY{o}{=} \PY{n}{colors}\PY{p}{,} 
+                           \PY{n}{legend} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{,} \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Status do pedido}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{fontsize}\PY{p}{\PYZcb{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}ax3 = fig.add\PYZus{}subplot(223)}
+         
+         \PY{c+c1}{\PYZsh{}ax3.axis(\PYZsq{}off\PYZsq{})}
+         \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{d2}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                           \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                           \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
+         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}ax4 = fig.add\PYZus{}subplot(224)}
+         
+         \PY{c+c1}{\PYZsh{}ax4.axis(\PYZsq{}off\PYZsq{})}
+         \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{d1}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                           \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                           \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
+         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{1.2} Neste gráfico de Boxplot foi possível verificar alguns
+atributos e a sua distribuição no caso do ``valor dos produtos'', ``taxa
+de entrega'' e do ``total de pedidos'', em que vimos a grande variedade
+entres as amostras coletadas, os valores discrepantes e a divisão dos
+dados quanto aos atributos mencionados.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{}Boxplot para verificar os valores discrepantes e a divisão dos dados}
+         \PY{c+c1}{\PYZsh{} do atributos mencionados}
+         
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
+         \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
+                                                    \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
+         \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
+                                                  \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taxa de entrega}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{223}\PY{p}{)}
+         \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
+                                                  \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} Text(0.5,1,'Total de pedidos')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{}Vendas pelo perído mencionado}
+         
+         \PY{c+c1}{\PYZsh{}plt.rcParams.update(\PYZob{}\PYZsq{}font.size\PYZsq{}: 10\PYZcb{})}
+         
+         
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}ax = fig.add\PYZus{}subplot(111)}
+         \PY{n}{filtrado} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2016\PYZhy{}07\PYZhy{}05}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+                         \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2016\PYZhy{}07\PYZhy{}15}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n}{time} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filtrado}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{time}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{grafico} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time} \PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Perído de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}time}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} Text(0.5,1,'Perído de pedidos')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{}Verificando se a Data do pedido informada na base,}
+         \PY{c+c1}{\PYZsh{} confere com o Dia do pedido informado.}
+         
+         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: O dia do pedido confere com a data do pedido informada?}
+         
+         \PY{n}{df1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{df1}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Data do pedido}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{df2} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{df2}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Base de dados)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{df3} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df1}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
+                                      \PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}
+                                      \PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Data do pedido}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                                      \PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{df3}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{df1} \PY{o}{=} \PY{n}{df1}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{df2}\PY{p}{)}
+         \PY{n}{df1} \PY{o}{=} \PY{n}{df1}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{df3}\PY{p}{)}
+         \PY{n}{df1}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:}   Data do pedido Dia do pedido (Base de dados) Dia do pedido (Verificado)
+         0     2016-07-05                        Sunday                    Tuesday
+         1     2016-07-05                        Sunday                    Tuesday
+         2     2016-07-05                        Sunday                    Tuesday
+         3     2016-07-06                        Monday                  Wednesday
+         4     2016-07-07                       Tuesday                   Thursday
+         5     2016-07-08                     Wednesday                     Friday
+         6     2016-07-09                      Thursday                   Saturday
+         7     2016-07-10                        Friday                     Sunday
+         8     2016-07-12                        Sunday                    Tuesday
+         9     2016-07-15                     Wednesday                     Friday
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Todos os registros estão }
+         \PY{c+c1}{\PYZsh{} com o dia do pedido informado \PYZdq{}errado\PYZdq{}?}
+         \PY{n}{filtrado} \PY{o}{=} \PY{n}{df1}\PY{p}{[}\PY{p}{(}\PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Base de dados)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                         \PY{o}{==} \PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+         \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} 0
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} Quantos pedidos receberam avaliação?}
+         \PY{n}{filtrado} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AVALIACAO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False} \PY{p}{)}\PY{p}{]}
+         \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} 3625
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
