@@ -312,48 +312,45 @@ Data: 31 de Maio de 2018
 \begin{quote}
 \subsection{Tema: Business
 Intelligence}\label{tema-business-intelligence}
-\end{quote}
-\end{quote}
 
-\begin{quote}
-\begin{quote}
 \begin{quote}
 \mbox{}%
 \paragraph{RELATÓRIO DA ANÁLISE ESTATÍSTICA DA BASE DE DADOS SOBRE
-PEDIDOS DE ALIMENTO REALIZADOS POR APLICATIVO NO 2° SEMESTRE DE
-2016.}\label{relatuxf3rio-da-anuxe1lise-estatuxedstica-da-base-de-dados-sobre-pedidos-de-alimento-realizados-por-aplicativo-no-2-semestre-de-2016.}
+PEDIDOS DE ALIMENTOS REALIZADOS POR APLICATIVO NO 2° SEMESTRE DE
+2016.}\label{relatuxf3rio-da-anuxe1lise-estatuxedstica-da-base-de-dados-sobre-pedidos-de-alimentos-realizados-por-aplicativo-no-2-semestre-de-2016.}
 \end{quote}
 \end{quote}
 \end{quote}
 
-    \paragraph{Introdução}\label{introduuxe7uxe3o}
+\subsubsection{Introdução}\label{introduuxe7uxe3o}
 
 Nos últimos anos um mercado que vem chamando a atenção de investidores é
 o mercado de delivery, que está cada vez mais virando tendência entre os
 brasileiros. Segundo a Associação Brasileira de Bares e Restaurantes
 (ABRASEL) já em 2015, o mercado brasileiro movimentava 9 bilhões de
-reais por ano, em 2017 o faturamento passou dos 10 bilhões.
+reais por ano e em 2017 o faturamento passou dos 10 bilhões.
 
-Muitos estabelecimentos que tinha apenas espaços físicos, têm investido
+Muitos estabelecimentos que tinham apenas espaços físicos, têm investido
 no serviço de delivery para atrair clientes e aumentar o faturamento. O
 SEBRAE reforça a preferência dos consumidores por lugares que ofereçam
 entrega em domicílio, e afirma que 12\%, segundo pesquisa realizada, não
-possuem nem loja física, trabalhando apenas com entregas inclusive por
-aplicativos.
+possuem nem loja física, e seguem trabalhando apenas com entregas
+inclusive por aplicativos.
 
 Muitos consumidores entrevistados afirmaram que pelo comodismo de não
-ter que enfrentar o trânsito e pelas taxas de como estacionamento e
-outras, faz mais sentido ir no aplicativo e escolher no cardápio
-diversificado, a facilidade de ver vários tipos de comida com apenas
-alguns cliques. Mesmo havendo taxa de entrega, ainda sim vale a pena
-conferir as ofertas oferecidas pelas lojas nos aplicativos.
+ter que enfrentar o trânsito pelas taxas de serviços e de
+estacionamento. Entre outras, faz mais sentido ir no aplicativo e
+escolher no cardápio e solicitar a entrega, além da facilidade de ver
+vários tipos de comida com apenas alguns cliques, tem atraído vários
+clientes mesmo havendo taxa de entrega. Ainda assim vale a pena conferir
+as ofertas oferecidas pelo comércio nos aplicativos, explica a pesquisa.
 
 Neste trabalho, foi nos concedido uma base de dados que mostra a
 respeito das entregas de alimentos em algumas cidades brasileiras com
 intuito de inferir informações a respeito e aplicar Business
 Intelligence.
 
-    \paragraph{1. Analisando os dados por meio
+\subsubsection{Analisando os dados por meio
 estatístico}\label{analisando-os-dados-por-meio-estatuxedstico}
 
 Após pesquisar sobre o assunto, foi realizada uma análise na base da
@@ -364,697 +361,1130 @@ em Python nos ajudou a manipular os dados e desenvolver os gráficos que
 serão apresentados a seguir para construção do trabalho.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
-        \PY{k+kn}{import} \PY{n+nn}{statsmodels} \PY{k}{as} \PY{n+nn}{st}
-        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
-        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
-        \PY{k+kn}{from} \PY{n+nn}{pandas}\PY{n+nn}{.}\PY{n+nn}{plotting} \PY{k}{import} \PY{n}{table}
-        \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{widgets}
-        \PY{k+kn}{import} \PY{n+nn}{datetime}
+{\color{incolor}In [{\color{incolor}489}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{statsmodels} \PY{k}{as} \PY{n+nn}{st}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          \PY{k+kn}{from} \PY{n+nn}{pandas}\PY{n+nn}{.}\PY{n+nn}{plotting} \PY{k}{import} \PY{n}{table}
+          \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{widgets}
+          \PY{k+kn}{import} \PY{n+nn}{datetime}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{}Carregando a base de dados}
-        \PY{n}{base} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{aplicativo.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}490}]:} \PY{c+c1}{\PYZsh{}Carregando a base de dados}
+          \PY{n}{base} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{aplicativo.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 
 
-    \textbf{1.1} O primeiro passo foi observar a base de dados para obter
-uma visão geral dos atributos que existem na base.
+    \begin{itemize}
+\tightlist
+\item
+  O primeiro passo foi observar a base de dados para obter uma visão
+  geral dos atributos que existem na base.
+\end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{}5 primeiros registros \PYZhy{} Visão inicial dos dados}
-        \PY{n}{base}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}491}]:} \PY{c+c1}{\PYZsh{}5 primeiros registros \PYZhy{} Visão inicial dos dados}
+          \PY{n}{base}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:}   DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
-        0  2016-07-05       19:51     Sunday            16.0           4.0   
-        1  2016-07-05       20:58     Sunday            28.0           4.0   
-        2  2016-07-05       21:35     Sunday            13.0           4.0   
-        3  2016-07-06       23:22     Monday            11.5           4.0   
-        4  2016-07-07       20:08    Tuesday            19.0           4.0   
-        
-           TOTAL\_PEDIDO FORMA\_PAGAMENTO  AVALIACAO    STATUS  ID\_ESTABELECIMENTO  \textbackslash{}
-        0          20.0        Dinheiro        NaN  Entregue                  16   
-        1          32.0        Dinheiro        NaN  Recusado                  16   
-        2          17.0        Dinheiro        NaN  Recusado                  16   
-        3          15.5        Dinheiro        NaN  Entregue                  16   
-        4          23.0        Dinheiro        NaN  Recusado                  16   
-        
-          TIPO\_ESTABELECIMENTO  ID\_USUARIO DDD\_USUARIO DATA\_CADASTRO\_USUARIO  \textbackslash{}
-        0           Lanchonete       50720          77            2016-07-05   
-        1           Lanchonete       48784          77            2016-06-18   
-        2           Lanchonete        7016          77            2015-08-10   
-        3           Lanchonete       48536          77            2016-06-15   
-        4           Lanchonete       21160          77            2015-12-21   
-        
-          PRIMEIRO\_PEDIDO BAIRRO\_USUARIO        CIDADE\_USUARIO SO\_DISPOSITIVO  
-        0             Sim        Ipanema  Vitória da Conquista        Android  
-        1             Não       Candeias  Vitória da Conquista            iOS  
-        2             Não        Urbis I  Vitória da Conquista        Android  
-        3             Não     Alto Maron  Vitória da Conquista        Android  
-        4             Não       Candeias  Vitória da Conquista        Android  
+{\color{outcolor}Out[{\color{outcolor}491}]:}   DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
+          0  2016-07-05       19:51     Sunday            16.0           4.0   
+          1  2016-07-05       20:58     Sunday            28.0           4.0   
+          2  2016-07-05       21:35     Sunday            13.0           4.0   
+          3  2016-07-06       23:22     Monday            11.5           4.0   
+          4  2016-07-07       20:08    Tuesday            19.0           4.0   
+          
+             TOTAL\_PEDIDO FORMA\_PAGAMENTO  AVALIACAO    STATUS  ID\_ESTABELECIMENTO  \textbackslash{}
+          0          20.0        Dinheiro        NaN  Entregue                  16   
+          1          32.0        Dinheiro        NaN  Recusado                  16   
+          2          17.0        Dinheiro        NaN  Recusado                  16   
+          3          15.5        Dinheiro        NaN  Entregue                  16   
+          4          23.0        Dinheiro        NaN  Recusado                  16   
+          
+            TIPO\_ESTABELECIMENTO  ID\_USUARIO DDD\_USUARIO DATA\_CADASTRO\_USUARIO  \textbackslash{}
+          0           Lanchonete       50720          77            2016-07-05   
+          1           Lanchonete       48784          77            2016-06-18   
+          2           Lanchonete        7016          77            2015-08-10   
+          3           Lanchonete       48536          77            2016-06-15   
+          4           Lanchonete       21160          77            2015-12-21   
+          
+            PRIMEIRO\_PEDIDO BAIRRO\_USUARIO        CIDADE\_USUARIO SO\_DISPOSITIVO  
+          0             Sim        Ipanema  Vitória da Conquista        Android  
+          1             Não       Candeias  Vitória da Conquista            iOS  
+          2             Não        Urbis I  Vitória da Conquista        Android  
+          3             Não     Alto Maron  Vitória da Conquista        Android  
+          4             Não       Candeias  Vitória da Conquista        Android  
 \end{Verbatim}
             
+    \begin{itemize}
+\tightlist
+\item
+  Neste gráfico de Boxplot foi possível verificar alguns atributos e a
+  sua distribuição no caso do ``valor dos produtos'', ``taxa de
+  entrega'' e do ``total de pedidos'', em que vimos a grande variedade
+  entres as amostras coletadas, os valores discrepantes e a divisão dos
+  dados quanto aos atributos mencionados.
+\end{itemize}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}Gráfico que exibe a quantidade valores ausentes }
-        \PY{c+c1}{\PYZsh{}para cada atributo da base}
-        
-        \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}
-        \PY{n}{font\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{15}
-        \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
-                                     \PY{n+nb}{sum}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
-        \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{n}{ax8} \PY{o}{=}  \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{colspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
-        \PY{n}{grafico} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   
-                               \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{,} 
-                               \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                               \PY{n}{edgecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                               \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
-        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores ausentes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        
-        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}
-        \PY{n}{df}
-        \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax8}\PY{p}{,} \PY{n}{df}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
-        \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
-        \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}492}]:} \PY{c+c1}{\PYZsh{}Boxplot para verificar os valores discrepantes e a divisão dos dados}
+          \PY{c+c1}{\PYZsh{} do atributos mencionados}
+          \PY{k}{def} \PY{n+nf}{boxplot\PYZus{}analise}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+              \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
+                                                     \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          
+              \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
+                                                   \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taxa de entrega}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          
+              \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{223}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
+                                                   \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              
+          
+          \PY{n}{boxplot\PYZus{}analise}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_0.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \textbf{1.5} No gráficos de histograma, é possível através de atributos
-numéricos observar a distribuição na base de dados
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{}Histograma dos atributos numéricos para }
-         \PY{c+c1}{\PYZsh{}observar a distribuição na base de dados.}
-         
-         \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}
-         \PY{n}{font\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{15}
-         
-         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
-         \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         
-         
-         \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
-         \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}  \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taxa de entrega}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         
-         
-         \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{223}\PY{p}{)}
-         \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         
-         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ID\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-         \PY{n}{ax8} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{224}\PY{p}{)}
-         
-         \PY{n}{dff}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade de pedidos por usuário}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}33}]:} Text(0.5,1,'Quantidade de pedidos por usuário')
-\end{Verbatim}
-            
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}base.describe()}
-        \PY{c+c1}{\PYZsh{}min(base[\PYZsq{}DATA\PYZus{}PEDIDO\PYZsq{}])}
-        \PY{c+c1}{\PYZsh{}max(base[\PYZsq{}DATA\PYZus{}PEDIDO\PYZsq{}])}
+{\color{incolor}In [{\color{incolor}493}]:} \PY{c+c1}{\PYZsh{}base.describe()}
+          \PY{c+c1}{\PYZsh{}min(base[\PYZsq{}DATA\PYZus{}PEDIDO\PYZsq{}])}
+          \PY{c+c1}{\PYZsh{}max(base[\PYZsq{}DATA\PYZus{}PEDIDO\PYZsq{}])}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} Formas de pagamentos e a respectiva quantidade,}
-         \PY{c+c1}{\PYZsh{} dado que o status do pedido é Recusado.}
-         
-         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais as formas de pagamento e a quantidade, }
-         \PY{c+c1}{\PYZsh{} que os pedidos foram recusados?}
-         
-         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Recusado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
-         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}494}]:} \PY{c+c1}{\PYZsh{} Formas de pagamentos e a respectiva quantidade,}
+          \PY{c+c1}{\PYZsh{} dado que o status do pedido é Recusado.}
+          
+          \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Recusado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+          \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}27}]:}             Quantidade
-         ID\_USUARIO            
-         40872              100
-         27784               79
-         10392               79
-         41408               78
-         41304               73
-         6856                71
-         264                 68
-         37264               66
-         14480               65
-         44328               64
-         29872               58
-         38200               56
-         46048               55
-         6256                55
-         29408               52
-         32368               52
-         50648               51
-         53288               50
-         11232               50
-         15488               49
-         47128               48
-         29888               48
-         20976               47
-         49856               47
-         21536               47
-         24912               46
-         19304               45
-         1568                45
-         11008               45
-         53352               45
-         {\ldots}                {\ldots}
-         58472                1
-         58464                1
-         58456                1
-         15208                1
-         15280                1
-         49456                1
-         58656                1
-         14432                1
-         58760                1
-         58880                1
-         14488                1
-         14504                1
-         49232                1
-         49240                1
-         32480                1
-         58792                1
-         32416                1
-         14624                1
-         58752                1
-         32384                1
-         49344                1
-         58736                1
-         58728                1
-         14704                1
-         58712                1
-         49360                1
-         58688                1
-         58680                1
-         58672                1
-         70176                1
-         
-         [4530 rows x 1 columns]
+{\color{outcolor}Out[{\color{outcolor}494}]:}                  Quantidade
+          FORMA\_PAGAMENTO            
+          Dinheiro               1030
+          Cartão                  404
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Formas de pagamentos e a respectiva quantidade,}
-         \PY{c+c1}{\PYZsh{} dado que o tipo de estabelecimento do pedido é Lanchonete.}
-         
-         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quantos estabelecimentos do}
-         \PY{c+c1}{\PYZsh{} tipo lanchonete tem na base de dados?}
-         
-         
-         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lanchonete}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
-         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}495}]:} \PY{c+c1}{\PYZsh{}Obter os tipos de estabelecimento e as suas respectivas quantidades}
+          \PY{c+c1}{\PYZsh{} da cidade de Vitória da Conquista.}
+          
+          \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vitória da Conquista}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+          \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}13}]:}                  Quantidade
-         FORMA\_PAGAMENTO            
-         Dinheiro               5066
-         Cartão                 2121
+{\color{outcolor}Out[{\color{outcolor}495}]:}                                Quantidade
+          TIPO\_ESTABELECIMENTO                     
+          Lanchonete                           7065
+          Pizzaria                             3733
+          Marmitex                             3491
+          Comida Natural                       2128
+          Restaurante                          1975
+          Comida Japonesa                      1152
+          Pizzaria/Esfiharia                   1075
+          Restaurante/Tapiocaria                573
+          Hot-Dog                               450
+          Sopas                                 413
+          Pizzaria/Lanchonete                   359
+          Culinária Oriental                    332
+          Doceria                               274
+          Picoleteria                           252
+          Espetinhos                            213
+          Tapiocaria                            115
+          Pães e Bolos                          109
+          Pizzaria/Esfiharia/Pastelaria         104
+          Saladas                                34
+          Comida Árabe                           30
+          Acarajé                                12
 \end{Verbatim}
             
+    \begin{itemize}
+\tightlist
+\item
+  A tabela mostrou que referenciava dados sobre pedidos de alimentos
+  realizados através de aplicativo para estabelecimentos, que atendiam
+  por meio de delivery em que a coleta foi realizada no segundo semestre
+  de 2016 de cidades brasileiras com enfoque no estado da Bahia,
+  observando a discrepância, já que tivemos apenas um pedido em Sorocaba
+  interior de São Paulo
+\end{itemize}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} Obter o registro em que a cidade seja Vitória da Conquista, }
-         \PY{c+c1}{\PYZsh{} a comida é japonesa e o valor é 274.20}
-         
-         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vitória da Conquista}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} 
-                     \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Comida Japonesa}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-                    \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mf}{274.20}\PY{p}{)}
-                    \PY{p}{]}
-         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-         \PY{n}{filt}
+{\color{incolor}In [{\color{incolor}496}]:} \PY{c+c1}{\PYZsh{}Obter as cidades do usuário e suas respectivas quantidades}
+          \PY{c+c1}{\PYZsh{} na base de dados}
+          
+          
+          \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{df}
+          \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}14}]:}       DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
-         21612  2016-08-07       19:44     Friday           274.2           3.0   
-         
-                TOTAL\_PEDIDO FORMA\_PAGAMENTO  AVALIACAO    STATUS  ID\_ESTABELECIMENTO  \textbackslash{}
-         21612         277.2          Cartão        NaN  Entregue                 280   
-         
-               TIPO\_ESTABELECIMENTO  ID\_USUARIO DDD\_USUARIO DATA\_CADASTRO\_USUARIO  \textbackslash{}
-         21612      Comida Japonesa       55080          77            2016-08-07   
-         
-               PRIMEIRO\_PEDIDO BAIRRO\_USUARIO        CIDADE\_USUARIO SO\_DISPOSITIVO  
-         21612             Sim      Boa Vista  Vitória da Conquista        Android  
+{\color{outcolor}Out[{\color{outcolor}496}]:}                       Quantidade
+          CIDADE\_USUARIO                  
+          Vitória da Conquista       23889
+          Ibicaraí                     103
+          Brumado                       71
+          Mortugaba                     35
+          Sorocaba                       1
 \end{Verbatim}
             
+    \begin{itemize}
+\tightlist
+\item
+  Verificamos que pela quantidade de pedidos realizados sobre o
+  estabelecimento, lanchonete recebeu a maior parte das vendas mesmo
+  sendo bastante distribuído os dados referentes aos outros
+  estabelecimentos.
+\end{itemize}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Obter os valores dos produtos e a respectiva quantidade, da cidade de Vitória da}
-         \PY{c+c1}{\PYZsh{} Conquista e que o tipo de estabelecimento seja Acarajé}
-         
-         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais valores e quantos produtos }
-         \PY{c+c1}{\PYZsh{} do respectivo valor, do tipo de estabelecimento lanchonete }
-         \PY{c+c1}{\PYZsh{} na cidade de Vitória da conquista}
-         
-         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vitória da Conquista}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} 
-                     \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Acarajé}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
-         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}497}]:} \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{df}
+          \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:}                 Quantidade
-         VALOR\_PRODUTOS            
-         37.0                    11
-         35.0                     1
+{\color{outcolor}Out[{\color{outcolor}497}]:}                                Quantidade
+          TIPO\_ESTABELECIMENTO                     
+          Lanchonete                           7187
+          Pizzaria                             3763
+          Marmitex                             3597
+          Comida Natural                       2135
+          Restaurante                          2006
+          Comida Japonesa                      1167
+          Pizzaria/Esfiharia                   1103
+          Restaurante/Tapiocaria                584
+          Pizzaria/Lanchonete                   455
+          Hot-Dog                               451
+          Sopas                                 419
+          Culinária Oriental                    334
+          Doceria                               274
+          Picoleteria                           252
+          Espetinhos                            213
+          Tapiocaria                            129
+          Pães e Bolos                          109
+          Pizzaria/Esfiharia/Pastelaria         105
+          Saladas                                34
+          Comida Árabe                           30
+          Acarajé                                12
 \end{Verbatim}
             
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{}Obter os tipos de estabelecimento e as suas respectivas quantidades}
-         \PY{c+c1}{\PYZsh{} da cidade de Vitória da Conquista.}
-         
-         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Na cidade de vitória da conquista}
-         \PY{c+c1}{\PYZsh{} quais e quantos são os tipos de estabelecimentos?}
-         
-         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vitória da Conquista}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
-         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:}                                Quantidade
-         TIPO\_ESTABELECIMENTO                     
-         Lanchonete                           7065
-         Pizzaria                             3733
-         Marmitex                             3491
-         Comida Natural                       2128
-         Restaurante                          1975
-         Comida Japonesa                      1152
-         Pizzaria/Esfiharia                   1075
-         Restaurante/Tapiocaria                573
-         Hot-Dog                               450
-         Sopas                                 413
-         Pizzaria/Lanchonete                   359
-         Culinária Oriental                    332
-         Doceria                               274
-         Picoleteria                           252
-         Espetinhos                            213
-         Tapiocaria                            115
-         Pães e Bolos                          109
-         Pizzaria/Esfiharia/Pastelaria         104
-         Saladas                                34
-         Comida Árabe                           30
-         Acarajé                                12
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{}Obter as cidades do usuário e suas respectivas quantidades}
-         \PY{c+c1}{\PYZsh{} na base de dados}
-         
-         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais e quantas cidades tem na }
-         \PY{c+c1}{\PYZsh{} base de dados?}
-         
-         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{df}
-         \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:}                       Quantidade
-         CIDADE\_USUARIO                  
-         Vitória da Conquista       23889
-         Ibicaraí                     103
-         Brumado                       71
-         Mortugaba                     35
-         Sorocaba                       1
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{}Obter as cidades do usuário e suas respectivas quantidades}
-         \PY{c+c1}{\PYZsh{} dado que o tipo de estabelecimento lanchonete.}
-         
-         \PY{c+c1}{\PYZsh{} Pergunta para ser respondida: Em quais cidades e qual a quantidade, tem lanchonete?}
-         
-         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lanchonete}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
-         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:}                       Quantidade
-         CIDADE\_USUARIO                  
-         Vitória da Conquista        7065
-         Ibicaraí                      62
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais e quantos são os valores de}
-         \PY{c+c1}{\PYZsh{} produtos do tipo de estabelecimento lanchonete?}
-         
-         
-         \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lanchonete}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
-         \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}19}]:}                 Quantidade
-         VALOR\_PRODUTOS            
-         13.00                  353
-         20.90                  327
-         11.00                  315
-         15.00                  260
-         22.00                  240
-         19.00                  220
-         18.00                  209
-         12.00                  192
-         14.00                  190
-         17.00                  190
-         9.50                   189
-         20.00                  186
-         26.00                  166
-         16.00                  158
-         10.00                  153
-         21.00                  153
-         24.00                  141
-         12.50                  140
-         10.50                  114
-         30.00                  109
-         15.90                   98
-         23.00                   96
-         16.50                   96
-         14.50                   87
-         8.00                    86
-         25.00                   85
-         30.90                   80
-         11.50                   80
-         20.50                   74
-         16.90                   67
-         {\ldots}                    {\ldots}
-         42.80                    1
-         43.40                    1
-         43.80                    1
-         47.80                    1
-         48.30                    1
-         48.70                    1
-         48.80                    1
-         49.30                    1
-         49.50                    1
-         38.40                    1
-         37.99                    1
-         37.90                    1
-         34.60                    1
-         30.75                    1
-         31.25                    1
-         31.30                    1
-         31.40                    1
-         32.40                    1
-         33.90                    1
-         34.30                    1
-         34.95                    1
-         37.30                    1
-         34.97                    1
-         35.40                    1
-         35.70                    1
-         35.80                    1
-         35.90                    1
-         36.80                    1
-         36.90                    1
-         139.70                   1
-         
-         [321 rows x 1 columns]
-\end{Verbatim}
-            
-    \textbf{1.3} Verificamos que pela quantidade de pedidos realizados sobre
-o estabelecimento, lanchonete recebeu a maior parte das vendas mesmo
-sendo bastante distribuído os dados referentes aos outros
-estabelecimentos.
+    \begin{itemize}
+\tightlist
+\item
+  Foi verificado também pelo gráfico que a maioria dos pedidos entregues
+  foram pagos pela forma de pagamento em dinheiro. Mesmo assim, vimos
+  que poucos pedidos foram recusados.
+\end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Quais e quantos tipos}
-         \PY{c+c1}{\PYZsh{} de estabelecimentos tem na base de dados?}
-         
-         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{df}
-         \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}20}]:}                                Quantidade
-         TIPO\_ESTABELECIMENTO                     
-         Lanchonete                           7187
-         Pizzaria                             3763
-         Marmitex                             3597
-         Comida Natural                       2135
-         Restaurante                          2006
-         Comida Japonesa                      1167
-         Pizzaria/Esfiharia                   1103
-         Restaurante/Tapiocaria                584
-         Pizzaria/Lanchonete                   455
-         Hot-Dog                               451
-         Sopas                                 419
-         Culinária Oriental                    334
-         Doceria                               274
-         Picoleteria                           252
-         Espetinhos                            213
-         Tapiocaria                            129
-         Pães e Bolos                          109
-         Pizzaria/Esfiharia/Pastelaria         105
-         Saladas                                34
-         Comida Árabe                           30
-         Acarajé                                12
-\end{Verbatim}
-            
-    \textbf{1.4} Foi verificado também pelo gráfico que a maioria dos
-pedidos entregues foram pagos pela forma de pagamento em dinheiro. Mesmo
-assim, vimos que poucos pedidos foram recusados.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.color}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
-         \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{14}
-         \PY{n}{font\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{14}
-         \PY{n}{d1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{d1}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
-         
-         
-         \PY{n}{colors} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellowgreen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{c+c1}{\PYZsh{} plot chart}
-         \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
-         \PY{n}{grafico} \PY{o}{=} \PY{n}{d1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                           \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,} \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
-                          \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,} 
-                           \PY{n}{colors} \PY{o}{=} \PY{n}{colors}\PY{p}{,} 
-                           \PY{n}{legend} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{,} \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Formas de pagamento}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{fontsize}\PY{p}{\PYZcb{}}\PY{p}{)}
-         
-         \PY{n}{d2} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{d2}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         
-         \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
-         \PY{n}{grafico} \PY{o}{=} \PY{n}{d2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                           \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,} \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} 
-                            \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} 
-                           \PY{n}{colors} \PY{o}{=} \PY{n}{colors}\PY{p}{,} 
-                           \PY{n}{legend} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{,} \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Status do pedido}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{fontsize}\PY{p}{\PYZcb{}}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{}ax3 = fig.add\PYZus{}subplot(223)}
-         
-         \PY{c+c1}{\PYZsh{}ax3.axis(\PYZsq{}off\PYZsq{})}
-         \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{d2}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                           \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                           \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
-         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
-         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{}ax4 = fig.add\PYZus{}subplot(224)}
-         
-         \PY{c+c1}{\PYZsh{}ax4.axis(\PYZsq{}off\PYZsq{})}
-         \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{d1}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                           \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                           \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
-         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
-         \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}498}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.color}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{14}
+          \PY{n}{font\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{14}
+          \PY{n}{d1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{d1}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+          
+          
+          \PY{n}{colors} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellowgreen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{c+c1}{\PYZsh{} plot chart}
+          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
+          \PY{n}{grafico} \PY{o}{=} \PY{n}{d1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                            \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,} \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+                           \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,} 
+                            \PY{n}{colors} \PY{o}{=} \PY{n}{colors}\PY{p}{,} 
+                            \PY{n}{legend} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{,} \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Formas de pagamento}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{fontsize}\PY{p}{\PYZcb{}}\PY{p}{)}
+          
+          \PY{n}{d2} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{d2}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          
+          \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
+          \PY{n}{grafico} \PY{o}{=} \PY{n}{d2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                            \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,} \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} 
+                             \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} 
+                            \PY{n}{colors} \PY{o}{=} \PY{n}{colors}\PY{p}{,} 
+                            \PY{n}{legend} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{,} \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Status do pedido}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{fontsize}\PY{p}{\PYZcb{}}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}ax3 = fig.add\PYZus{}subplot(223)}
+          
+          \PY{c+c1}{\PYZsh{}ax3.axis(\PYZsq{}off\PYZsq{})}
+          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{d2}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                            \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                            \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}ax4 = fig.add\PYZus{}subplot(224)}
+          
+          \PY{c+c1}{\PYZsh{}ax4.axis(\PYZsq{}off\PYZsq{})}
+          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{d1}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                            \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                            \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
-    \textbf{1.2} Neste gráfico de Boxplot foi possível verificar alguns
-atributos e a sua distribuição no caso do ``valor dos produtos'', ``taxa
-de entrega'' e do ``total de pedidos'', em que vimos a grande variedade
-entres as amostras coletadas, os valores discrepantes e a divisão dos
-dados quanto aos atributos mencionados.
+    \begin{itemize}
+\tightlist
+\item
+  No gráficos de histograma, é possível através de atributos numéricos
+  observar a distribuição na base de dados
+\end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{}Boxplot para verificar os valores discrepantes e a divisão dos dados}
-         \PY{c+c1}{\PYZsh{} do atributos mencionados}
-         
-         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
-         \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
-                                                    \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         
-         
-         \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
-         \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
-                                                  \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taxa de entrega}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         
-         
-         \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{223}\PY{p}{)}
-         \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
-                                                  \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}499}]:} \PY{c+c1}{\PYZsh{}Histograma dos atributos numéricos para }
+          \PY{c+c1}{\PYZsh{}observar a distribuição na base de dados.}
+          \PY{k}{def} \PY{n+nf}{histograma\PYZus{}analise}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+              \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}
+              \PY{n}{font\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{15}
+          
+              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+              \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
+              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          
+              \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
+              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}  \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taxa de entrega}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          
+              \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{223}\PY{p}{)}
+              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+              \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ID\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+              \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+              \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+              \PY{n}{ax8} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{224}\PY{p}{)}
+          
+              \PY{n}{dff}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade de pedidos por usuário}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          
+          \PY{n}{histograma\PYZus{}analise}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}22}]:} Text(0.5,1,'Total de pedidos')
-\end{Verbatim}
-            
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
+    \subsection{Pré-processamento}\label{pruxe9-processamento}
+
+Para executar a etapa de pré-processamento, além da etapa de análise dos
+dados por meio estatístico, observamos os dados para verificar a
+existência dos seguintes itens:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Instâncias duplicadas;
+\item
+  Valores ausentes;
+\item
+  Valores inconsistentes;
+\item
+  Outliers.
+\end{enumerate}
+
+Após essa verificação, executamos as etapas de pré-processamento.
+
+\subsubsection{1. Instâncias duplicadas}\label{instuxe2ncias-duplicadas}
+
+\begin{itemize}
+\tightlist
+\item
+  Verificamos a quantidade de instâncias e atributos que a base possui:
+\end{itemize}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{}Vendas pelo perído mencionado}
-         
-         \PY{c+c1}{\PYZsh{}plt.rcParams.update(\PYZob{}\PYZsq{}font.size\PYZsq{}: 10\PYZcb{})}
-         
-         
-         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-         \PY{c+c1}{\PYZsh{}ax = fig.add\PYZus{}subplot(111)}
-         \PY{n}{filtrado} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2016\PYZhy{}07\PYZhy{}05}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
-                         \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2016\PYZhy{}07\PYZhy{}15}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
-         \PY{n}{time} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filtrado}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{time}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{grafico} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time} \PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)} 
-         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Perído de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{}time}
+{\color{incolor}In [{\color{incolor}500}]:} \PY{c+c1}{\PYZsh{}Verificar quantas instâncias (linhas) e quantos atributos (colunas) tem a base}
+          \PY{n}{base}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}23}]:} Text(0.5,1,'Perído de pedidos')
+{\color{outcolor}Out[{\color{outcolor}500}]:} (24359, 18)
 \end{Verbatim}
             
+    \begin{itemize}
+\tightlist
+\item
+  Verificamos quantas instâncias duplicadas existem na base:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}501}]:} \PY{c+c1}{\PYZsh{}Verificar quantas instâncias (linhas) duplicadas}
+          \PY{n}{base}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}501}]:} 7
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Verificamos quais instâncias são duplicadas:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}502}]:} \PY{c+c1}{\PYZsh{}Verificar quais são as instâncias duplicadas}
+          \PY{n}{base}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{base}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}502}]:}       DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
+          1679   2016-09-17       23:25   Thursday            10.0           2.0   
+          1680   2016-09-17       23:25   Thursday            10.0           2.0   
+          11793  2016-09-24       21:27   Thursday             0.0           3.0   
+          11794  2016-09-24       21:27   Thursday             0.0           3.0   
+          11795  2016-09-24       21:27   Thursday             0.0           3.0   
+          11796  2016-09-24       21:27   Thursday             0.0           3.0   
+          15616  2016-09-19       10:50   Saturday            12.0           2.0   
+          15617  2016-09-19       10:50   Saturday            12.0           2.0   
+          23685  2016-09-27       16:36     Sunday            16.0           4.0   
+          23686  2016-09-27       16:36     Sunday            16.0           4.0   
+          23688  2016-09-27       16:36     Sunday            16.0           4.0   
+          
+                 TOTAL\_PEDIDO FORMA\_PAGAMENTO  AVALIACAO    STATUS  ID\_ESTABELECIMENTO  \textbackslash{}
+          1679           12.0        Dinheiro        NaN  Entregue                 168   
+          1680           12.0        Dinheiro        NaN  Entregue                 168   
+          11793           0.0        Dinheiro        NaN  Recusado                 936   
+          11794           0.0        Dinheiro        NaN  Recusado                 936   
+          11795           0.0        Dinheiro        NaN  Recusado                 936   
+          11796           0.0        Dinheiro        NaN  Recusado                 936   
+          15616          14.0        Dinheiro        NaN  Entregue                1400   
+          15617          14.0        Dinheiro        NaN  Entregue                1400   
+          23685          20.0          Cartão        NaN  Recusado                 640   
+          23686          20.0          Cartão        NaN  Recusado                 640   
+          23688          20.0          Cartão        NaN  Recusado                 640   
+          
+                TIPO\_ESTABELECIMENTO  ID\_USUARIO DDD\_USUARIO DATA\_CADASTRO\_USUARIO  \textbackslash{}
+          1679            Lanchonete       52376          77            2016-07-18   
+          1680            Lanchonete       52376          77            2016-07-18   
+          11793           Lanchonete        7592          77            2015-08-19   
+          11794           Lanchonete        7592          77            2015-08-19   
+          11795           Lanchonete        7592          77            2015-08-19   
+          11796           Lanchonete        7592          77            2015-08-19   
+          15616             Marmitex       38936          73            2016-04-15   
+          15617             Marmitex       38936          73            2016-04-15   
+          23685       Comida Natural        7000          77            2015-08-09   
+          23686       Comida Natural        7000          77            2015-08-09   
+          23688       Comida Natural        7000          77            2015-08-09   
+          
+                PRIMEIRO\_PEDIDO BAIRRO\_USUARIO        CIDADE\_USUARIO SO\_DISPOSITIVO  
+          1679              Não         Sumaré  Vitória da Conquista        Android  
+          1680              Não         Sumaré  Vitória da Conquista        Android  
+          11793             Não       Candeias  Vitória da Conquista             PC  
+          11794             Não       Candeias  Vitória da Conquista             PC  
+          11795             Não       Candeias  Vitória da Conquista             PC  
+          11796             Não       Candeias  Vitória da Conquista             PC  
+          15616             Não       Candeias  Vitória da Conquista        Android  
+          15617             Não       Candeias  Vitória da Conquista        Android  
+          23685             Não   Universidade  Vitória da Conquista             PC  
+          23686             Não   Universidade  Vitória da Conquista             PC  
+          23688             Não   Universidade  Vitória da Conquista             PC  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Por se tratar de poucas instâncias duplicadas, foi decidido remover as
+  mesmas:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}503}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{base}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{first}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  Quantidade de instâncias após remoção:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}504}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}504}]:} (24352, 18)
+\end{Verbatim}
+            
+    \subsubsection{2. Valores ausentes}\label{valores-ausentes}
+
+\begin{itemize}
+\tightlist
+\item
+  Verificamos quantos valores ausentes e de quais atributos são:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}505}]:} \PY{c+c1}{\PYZsh{}Gráfico que exibe a quantidade valores ausentes }
+          \PY{c+c1}{\PYZsh{}para cada atributo da base}
+          
+          \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}
+          \PY{n}{font\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{15}
+          \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{novaBase}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{ax8} \PY{o}{=}  \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{colspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+          \PY{n}{grafico} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   
+                                 \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{,} 
+                                 \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                                 \PY{n}{edgecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                                 \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores ausentes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}
+          \PY{n}{df}
+          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax8}\PY{p}{,} \PY{n}{df}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+\end{Verbatim}
+
+
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
+    \begin{itemize}
+\tightlist
+\item
+  Verificamos se as 260 instâncias de valor ausente para o atributo
+  \textbf{CIDADE\_USUARIO} são as mesmas para o
+  \textbf{BAIRRO\_USUARIO}, e vice-versa:
+\end{itemize}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{}Verificando se a Data do pedido informada na base,}
-         \PY{c+c1}{\PYZsh{} confere com o Dia do pedido informado.}
-         
-         \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: O dia do pedido confere com a data do pedido informada?}
-         
-         \PY{n}{df1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-         \PY{n}{df1}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Data do pedido}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         
-         \PY{n}{df2} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-         \PY{n}{df2}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Base de dados)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         
-         \PY{n}{df3} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df1}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
-                                      \PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}
-                                      \PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Data do pedido}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-                                      \PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
-         \PY{n}{df3}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{df1} \PY{o}{=} \PY{n}{df1}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{df2}\PY{p}{)}
-         \PY{n}{df1} \PY{o}{=} \PY{n}{df1}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{df3}\PY{p}{)}
-         \PY{n}{df1}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}506}]:} \PY{c+c1}{\PYZsh{}(linha, coluna)}
+          \PY{n}{novaBase}\PY{p}{[}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZam{}} \PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BAIRRO\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:}   Data do pedido Dia do pedido (Base de dados) Dia do pedido (Verificado)
-         0     2016-07-05                        Sunday                    Tuesday
-         1     2016-07-05                        Sunday                    Tuesday
-         2     2016-07-05                        Sunday                    Tuesday
-         3     2016-07-06                        Monday                  Wednesday
-         4     2016-07-07                       Tuesday                   Thursday
-         5     2016-07-08                     Wednesday                     Friday
-         6     2016-07-09                      Thursday                   Saturday
-         7     2016-07-10                        Friday                     Sunday
-         8     2016-07-12                        Sunday                    Tuesday
-         9     2016-07-15                     Wednesday                     Friday
+{\color{outcolor}Out[{\color{outcolor}506}]:} (260, 18)
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Após observar a quantidade de valores ausentes e confirmar que o
+  atributo \textbf{CIDADE\_USUARIO} e \textbf{BAIRRO\_USUARIO} estão
+  correlacionados, foi decidido remover as instâncias que não contém
+  valor para o atributo \textbf{CIDADE\_USUARIO} e
+  \textbf{BAIRRO\_USUARIO}, por causa da sua baixa quantidade em relação
+  a de instâncias da base:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}507}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{subset}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BAIRRO\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  Após remover as 260 instâncias, referentes aos valores ausentes
+  \textbf{CIDADE\_USUARIO} e \textbf{BAIRRO\_USUARIO}, a base passou a
+  ter 24092 linhas:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}508}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}508}]:} (24092, 18)
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Antes de decidir o que fazer com o valores ausentes do atributo
+  \textbf{AVALIACAO}, decidimos observar quais ocorrências para o mesmo
+  e a quantidade:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}509}]:} \PY{k}{def} \PY{n+nf}{listar\PYZus{}ocorrencias\PYZus{}avaliacao}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+              \PY{n}{r} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AVALIACAO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{n}{dropna}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}    
+              \PY{n}{r}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+              \PY{n}{total} \PY{o}{=} \PY{n}{r}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+              \PY{n}{r}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{(}\PY{n}{x}\PY{o}{/}\PY{n}{total}\PY{p}{)}\PY{p}{)}
+              \PY{k}{return} \PY{n}{r}
+          
+          \PY{n}{listar\PYZus{}ocorrencias\PYZus{}avaliacao}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}509}]:}       Quantidade         \%
+          NaN        20503  0.851029
+           5.0        2037  0.084551
+           4.0         580  0.024074
+           1.0         531  0.022041
+           3.0         290  0.012037
+           2.0         151  0.006268
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Observando que 85\% das instâncias que possuem valores ausentes para o
+  atributo \textbf{AVALIACAO}, a remoção dessas linhas não é uma opção.
+  Como não podemos remover, decidimos atribuir o valor "0.0" para os
+  valores ausentes do atributo \textbf{AVALIACAO}. A decisão se tornou
+  mais consistente, porque o atributo \textbf{AVALIACAO}, mesmo sendo
+  numérico, possui 5 valores (1.0, 2.0, 3.0, 4.0 e 5.0) bem separados e
+  sequênciais. Com isso, inferimos que os valores ausentes seriam o
+  valor "0.0":
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}510}]:} \PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AVALIACAO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{listar\PYZus{}ocorrencias\PYZus{}avaliacao}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}510}]:}      Quantidade         \%
+          0.0       20503  0.851029
+          5.0        2037  0.084551
+          4.0         580  0.024074
+          1.0         531  0.022041
+          3.0         290  0.012037
+          2.0         151  0.006268
+\end{Verbatim}
+            
+    \subsubsection{3. Valores inconsistentes}\label{valores-inconsistentes}
+
+\begin{itemize}
+\tightlist
+\item
+  Foi verificado se o atributo \textbf{DIA\_PEDIDO} confere com a dia do
+  atributo \textbf{DATA\_PEDIDO}. Para isso utilizamos uma função da
+  linguagem python, que informando a data, a mesma retorna o dia da
+  semana:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}511}]:} \PY{c+c1}{\PYZsh{}Verificando se a Data do pedido informada na base,}
+          \PY{c+c1}{\PYZsh{} confere com o Dia do pedido informado.}
+          
+          \PY{n}{df} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{loc}\PY{p}{[} \PY{p}{:} \PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+          
+          \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado pela função)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
+                                       \PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}
+                                       \PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                                       \PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}511}]:}   DATA\_PEDIDO DIA\_PEDIDO Dia do pedido (Verificado pela função)
+          0  2016-07-05     Sunday                                Tuesday
+          1  2016-07-05     Sunday                                Tuesday
+          2  2016-07-05     Sunday                                Tuesday
+          3  2016-07-06     Monday                              Wednesday
+          4  2016-07-07    Tuesday                               Thursday
+          5  2016-07-08  Wednesday                                 Friday
+          6  2016-07-09   Thursday                               Saturday
+          7  2016-07-10     Friday                                 Sunday
+          8  2016-07-12     Sunday                                Tuesday
+          9  2016-07-15  Wednesday                                 Friday
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Verificamos se existia alguma instância na base de dados, em que o dia
+  do pedido verificado pela função era igual do atributo
+  \textbf{DIA\_PEDIDO}:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}512}]:} \PY{n}{filtrado} \PY{o}{=} \PY{n}{df1}\PY{p}{[}\PY{p}{(}\PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                          \PY{o}{==} \PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado pela função)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+          \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}512}]:} 0
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Devido a verificação, decidimos remover o atributo
+  \textbf{DIA\_PEDIDO}:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}513}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  A base de dados passou a ter 17 atributos:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}514}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}514}]:} (24092, 17)
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Observamos que para o atributo \textbf{TOTAL\_PEDIDO}, é dado pela
+  soma de \textbf{VALOR\_PRODUTOS} e a \textbf{TAXA\_ENTREGA}.
+  Adicionamos o atributo \textbf{STATUS} para efetuar outra verificação
+  posteriormente, com isso resolvemos verificar nossa hipótese:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}515}]:} \PY{n}{df} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                   \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+          \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}
+                                             \PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
+                                             \PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} 
+                                              \PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
+                                                \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}515}]:}    VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
+          0            16.0           4.0          20.0  Entregue   
+          1            28.0           4.0          32.0  Recusado   
+          2            13.0           4.0          17.0  Recusado   
+          3            11.5           4.0          15.5  Entregue   
+          4            19.0           4.0          23.0  Recusado   
+          5            42.0           4.0          46.0  Recusado   
+          6             9.0           4.0          13.0  Recusado   
+          7            29.0           4.0          33.0  Entregue   
+          8            32.0           4.0          36.0  Entregue   
+          9            12.0           4.0          16.0  Recusado   
+          
+             Total pedido (Verificado)  
+          0                       20.0  
+          1                       32.0  
+          2                       17.0  
+          3                       15.5  
+          4                       23.0  
+          5                       46.0  
+          6                       13.0  
+          7                       33.0  
+          8                       36.0  
+          9                       16.0  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Verificamos se existe alguém fora dessa regra:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}541}]:} \PY{n}{filtrado\PYZus{}diferente} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}
+              \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} 
+              \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False}\PY{p}{]}
+          \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado\PYZus{}diferente}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}541}]:} 5
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Pela verificação anterior, queremos saber se a diferença foi para mais
+  ou para menos em relação ao \textbf{Total pedido (Verificado)}.
+  Primeiro verificamos para mais:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}540}]:} \PY{n}{filtrado\PYZus{}para\PYZus{}mais} \PY{o}{=} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}
+              \PY{p}{(}\PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+              \PY{o}{\PYZgt{}} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+          \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}mais}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}540}]:} 0
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Segundo verificamos para menos:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}539}]:} \PY{n}{filtrado\PYZus{}para\PYZus{}menos} \PY{o}{=} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}
+              \PY{p}{(}\PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+              \PY{o}{\PYZlt{}} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+          \PY{n}{recusados\PYZus{}esperado} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{)}
+          \PY{n}{recusados\PYZus{}esperado}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}539}]:} 5
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Inferimos que para um pedido/instância, que tem como valor do atributo
+  \textbf{TOTAL\_PEDIDO} inferior ao \textbf{Total pedido (Verificado)},
+  o \textbf{STATUS} do pedido deveria ser \textbf{Recusado}.
+  Verificamos:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}519}]:} \PY{n}{recusados} \PY{o}{=} \PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Recusado}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+          \PY{n+nb}{len}\PY{p}{(}\PY{n}{recusados}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}519}]:} 4
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{}Pergunta para ser respondida: Todos os registros estão }
-         \PY{c+c1}{\PYZsh{} com o dia do pedido informado \PYZdq{}errado\PYZdq{}?}
-         \PY{n}{filtrado} \PY{o}{=} \PY{n}{df1}\PY{p}{[}\PY{p}{(}\PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Base de dados)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-                         \PY{o}{==} \PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
-         \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}520}]:} \PY{n}{recusados}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}25}]:} 0
+{\color{outcolor}Out[{\color{outcolor}520}]:}        VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
+          11793             0.0           3.0           0.0  Recusado   
+          11804             0.0           3.0           0.0  Recusado   
+          11805             0.0           3.0           0.0  Recusado   
+          19900             0.0           4.0           0.0  Recusado   
+          
+                 Total pedido (Verificado)  
+          11793                        3.0  
+          11804                        3.0  
+          11805                        3.0  
+          19900                        4.0  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Pela execução anterior, observamos que existe uma instância com o
+  atributo \textbf{STATUS} igual a \textbf{Entregue} e o
+  \textbf{TOTAL\_PEDIDO} menor do que o \textbf{Total pedido
+  (Verificado)}:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}521}]:} \PY{n}{entregue} \PY{o}{=} \PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}
+              \PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Entregue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+          \PY{n+nb}{len}\PY{p}{(}\PY{n}{entregue}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}521}]:} 1
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} Quantos pedidos receberam avaliação?}
-         \PY{n}{filtrado} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AVALIACAO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False} \PY{p}{)}\PY{p}{]}
-         \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}522}]:} \PY{n}{entregue}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:} 3625
+{\color{outcolor}Out[{\color{outcolor}522}]:}        VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
+          22722            27.9          1.99          6.89  Entregue   
+          
+                 Total pedido (Verificado)  
+          22722                      29.89  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Podemos considerar essa instância com valor inconsistente, portanto,
+  decidimos remover a mesma da base de dados:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}523}]:} \PY{n}{i} \PY{o}{=} \PY{n}{entregue}\PY{o}{.}\PY{n}{index}
+          \PY{n}{novaBase} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+          \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}523}]:} (24091, 17)
+\end{Verbatim}
+            
+    \subsubsection{4. Outliers}\label{outliers}
+
+\begin{itemize}
+\tightlist
+\item
+  Utilizando a visualização e a análise do gráfico \textbf{boxplot}
+  exibido neste relatório, observamos que existem outliers nos valores
+  dos atributos \textbf{VALOR\_PRODUTOS} e \textbf{TOTAL\_PEDIDOS}:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}524}]:} \PY{n}{boxplot\PYZus{}analise}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_65_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  Decidimos fazer a eliminação de valores acima de 60, tanto para o
+  atributo \textbf{VALOR\_PRODUTOS} e \textbf{TOTAL\_PEDIDO}, com base
+  no gráfico:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}538}]:} \PY{k}{def} \PY{n+nf}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{n}{valor}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}
+                  \PY{n}{novaBase}\PY{p}{[}\PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{valor}\PY{p}{)} 
+                  \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{valor}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+              
+          \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}526}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}526}]:} (23297, 17)
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Verificamos se nos \textbf{boxplot} existem ainda outliers:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}527}]:} \PY{k}{def} \PY{n+nf}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}\PY{p}{:}
+              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+              \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{novaBase}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
+                                                 \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          
+              \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{novaBase}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
+                                                   \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              
+          \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_70_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  Decidimos fazer novamente a eliminação de valores acima de 55, tanto
+  para o atributo \textbf{VALOR\_PRODUTOS} e \textbf{TOTAL\_PEDIDO}, com
+  base no gráfico acima:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}528}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{55}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}529}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}529}]:} (22908, 17)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}530}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_74_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  Novamente a eliminação de valores acima de 55, apenas para o atributo
+  \textbf{TOTAL\_PEDIDO}, com base no gráfico acima:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}531}]:} \PY{k}{def} \PY{n+nf}{remover\PYZus{}outliers\PYZus{}total\PYZus{}pedido}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{n}{valor}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{valor}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+          \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers\PYZus{}total\PYZus{}pedido}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{55}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}532}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}532}]:} (22676, 17)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}533}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_78_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  Outra vez a eliminação considerando valores acima de 52, tanto para o
+  atributo \textbf{VALOR\_PRODUTOS} e \textbf{TOTAL\_PEDIDO}, logo em
+  seguida apenas para \textbf{TOTAL\_PEDIDO}, com base no gráfico acima:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}534}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{52}\PY{p}{)}
+          \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers\PYZus{}total\PYZus{}pedido}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{52}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}535}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}535}]:} (22429, 17)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}536}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_82_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  A remoção foi satisfatória, não é preciso remover mais. Portanto, após
+  a execução do pré-processamento ainda possuímos,boa quantidade de
+  dados:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}537}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}537}]:} (22429, 17)
 \end{Verbatim}
             
 
