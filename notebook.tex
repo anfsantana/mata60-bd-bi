@@ -313,12 +313,8 @@ Data: 31 de Maio de 2018
 \subsection{Tema: Business
 Intelligence}\label{tema-business-intelligence}
 
-\begin{quote}
-\mbox{}%
-\paragraph{RELATÓRIO DA ANÁLISE ESTATÍSTICA DA BASE DE DADOS SOBRE
-PEDIDOS DE ALIMENTOS REALIZADOS POR APLICATIVO NO 2° SEMESTRE DE
-2016.}\label{relatuxf3rio-da-anuxe1lise-estatuxedstica-da-base-de-dados-sobre-pedidos-de-alimentos-realizados-por-aplicativo-no-2-semestre-de-2016.}
-\end{quote}
+\textbf{RELATÓRIO DA ANÁLISE ESTATÍSTICA DA BASE DE DADOS SOBRE PEDIDOS
+DE ALIMENTOS REALIZADOS POR APLICATIVO NO 2° SEMESTRE DE 2016}.
 \end{quote}
 \end{quote}
 
@@ -361,7 +357,7 @@ em Python nos ajudou a manipular os dados e desenvolver os gráficos que
 serão apresentados a seguir para construção do trabalho.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}489}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+{\color{incolor}In [{\color{incolor}542}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
           \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
           \PY{k+kn}{import} \PY{n+nn}{statsmodels} \PY{k}{as} \PY{n+nn}{st}
           \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
@@ -373,7 +369,7 @@ serão apresentados a seguir para construção do trabalho.
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}490}]:} \PY{c+c1}{\PYZsh{}Carregando a base de dados}
+{\color{incolor}In [{\color{incolor}543}]:} \PY{c+c1}{\PYZsh{}Carregando a base de dados}
           \PY{n}{base} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{aplicativo.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 
@@ -386,13 +382,13 @@ serão apresentados a seguir para construção do trabalho.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}491}]:} \PY{c+c1}{\PYZsh{}5 primeiros registros \PYZhy{} Visão inicial dos dados}
+{\color{incolor}In [{\color{incolor}544}]:} \PY{c+c1}{\PYZsh{}5 primeiros registros \PYZhy{} Visão inicial dos dados}
           \PY{n}{base}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}491}]:}   DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
+{\color{outcolor}Out[{\color{outcolor}544}]:}   DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
           0  2016-07-05       19:51     Sunday            16.0           4.0   
           1  2016-07-05       20:58     Sunday            28.0           4.0   
           2  2016-07-05       21:35     Sunday            13.0           4.0   
@@ -432,27 +428,25 @@ serão apresentados a seguir para construção do trabalho.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}492}]:} \PY{c+c1}{\PYZsh{}Boxplot para verificar os valores discrepantes e a divisão dos dados}
+{\color{incolor}In [{\color{incolor}561}]:} \PY{c+c1}{\PYZsh{}Boxplot para verificar os valores discrepantes e a divisão dos dados}
           \PY{c+c1}{\PYZsh{} do atributos mencionados}
           \PY{k}{def} \PY{n+nf}{boxplot\PYZus{}analise}\PY{p}{(}\PY{p}{)}\PY{p}{:}
-              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
               \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
-              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
-                                                     \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}
+                  \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           
-          
               \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
-              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
-                                                   \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}
+                  \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taxa de entrega}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           
-          
               \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{223}\PY{p}{)}
-              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
-                                                   \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}
+                  \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-              
+          
           
           \PY{n}{boxplot\PYZus{}analise}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -464,43 +458,36 @@ serão apresentados a seguir para construção do trabalho.
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}493}]:} \PY{c+c1}{\PYZsh{}base.describe()}
-          \PY{c+c1}{\PYZsh{}min(base[\PYZsq{}DATA\PYZus{}PEDIDO\PYZsq{}])}
-          \PY{c+c1}{\PYZsh{}max(base[\PYZsq{}DATA\PYZus{}PEDIDO\PYZsq{}])}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}494}]:} \PY{c+c1}{\PYZsh{} Formas de pagamentos e a respectiva quantidade,}
+{\color{incolor}In [{\color{incolor}563}]:} \PY{c+c1}{\PYZsh{} Formas de pagamentos e a respectiva quantidade,}
           \PY{c+c1}{\PYZsh{} dado que o status do pedido é Recusado.}
           
           \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Recusado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
           \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
           \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-          \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}494}]:}                  Quantidade
+{\color{outcolor}Out[{\color{outcolor}563}]:}                  Quantidade
           FORMA\_PAGAMENTO            
           Dinheiro               1030
           Cartão                  404
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}495}]:} \PY{c+c1}{\PYZsh{}Obter os tipos de estabelecimento e as suas respectivas quantidades}
+{\color{incolor}In [{\color{incolor}564}]:} \PY{c+c1}{\PYZsh{}Obter os tipos de estabelecimento e as suas respectivas quantidades}
           \PY{c+c1}{\PYZsh{} da cidade de Vitória da Conquista.}
           
           \PY{n}{filt} \PY{o}{=} \PY{n}{base}\PY{p}{[}\PY{p}{(}\PY{n}{base}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vitória da Conquista}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
           \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{filt}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
           \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-          \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}495}]:}                                Quantidade
+{\color{outcolor}Out[{\color{outcolor}564}]:}                                Quantidade
           TIPO\_ESTABELECIMENTO                     
           Lanchonete                           7065
           Pizzaria                             3733
@@ -537,19 +524,18 @@ serão apresentados a seguir para construção do trabalho.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}496}]:} \PY{c+c1}{\PYZsh{}Obter as cidades do usuário e suas respectivas quantidades}
+{\color{incolor}In [{\color{incolor}565}]:} \PY{c+c1}{\PYZsh{}Obter as cidades do usuário e suas respectivas quantidades}
           \PY{c+c1}{\PYZsh{} na base de dados}
-          
           
           \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
           \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
           \PY{n}{df}
-          \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}496}]:}                       Quantidade
+{\color{outcolor}Out[{\color{outcolor}565}]:}                       Quantidade
           CIDADE\_USUARIO                  
           Vitória da Conquista       23889
           Ibicaraí                     103
@@ -568,15 +554,15 @@ serão apresentados a seguir para construção do trabalho.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}497}]:} \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}566}]:} \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TIPO\PYZus{}ESTABELECIMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
           \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
           \PY{n}{df}
-          \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}497}]:}                                Quantidade
+{\color{outcolor}Out[{\color{outcolor}566}]:}                                Quantidade
           TIPO\_ESTABELECIMENTO                     
           Lanchonete                           7187
           Pizzaria                             3763
@@ -610,22 +596,27 @@ serão apresentados a seguir para construção do trabalho.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}498}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.color}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}567}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.color}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
           \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{14}
-          \PY{n}{font\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{14}
+          \PY{n}{font\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{14}
           \PY{n}{d1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FORMA\PYZus{}PAGAMENTO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
           \PY{n}{d1}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
-          
+          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
           
           \PY{n}{colors} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellowgreen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
           \PY{c+c1}{\PYZsh{} plot chart}
           \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
-          \PY{n}{grafico} \PY{o}{=} \PY{n}{d1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                            \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,} \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
-                           \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,} 
-                            \PY{n}{colors} \PY{o}{=} \PY{n}{colors}\PY{p}{,} 
-                            \PY{n}{legend} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{,} \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{grafico} \PY{o}{=} \PY{n}{d1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}
+              \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,}
+              \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+              \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}
+              \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,}
+              \PY{n}{colors}\PY{o}{=}\PY{n}{colors}\PY{p}{,}
+              \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+              \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{,}
+              \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
           \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Formas de pagamento}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{fontsize}\PY{p}{\PYZcb{}}\PY{p}{)}
@@ -634,11 +625,17 @@ serão apresentados a seguir para construção do trabalho.
           \PY{n}{d2}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
           
           \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
-          \PY{n}{grafico} \PY{o}{=} \PY{n}{d2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                            \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,} \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} 
-                             \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} 
-                            \PY{n}{colors} \PY{o}{=} \PY{n}{colors}\PY{p}{,} 
-                            \PY{n}{legend} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{,} \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{grafico} \PY{o}{=} \PY{n}{d2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}
+              \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{n}{autopct}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{n}{startangle}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{,}
+              \PY{n}{shadow}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+              \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}
+              \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,}
+              \PY{n}{colors}\PY{o}{=}\PY{n}{colors}\PY{p}{,}
+              \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+              \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{,}
+              \PY{n}{subplots}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
           \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Status do pedido}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{fontsize}\PY{p}{\PYZcb{}}\PY{p}{)}
@@ -646,27 +643,23 @@ serão apresentados a seguir para construção do trabalho.
           \PY{c+c1}{\PYZsh{}ax3 = fig.add\PYZus{}subplot(223)}
           
           \PY{c+c1}{\PYZsh{}ax3.axis(\PYZsq{}off\PYZsq{})}
-          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{d2}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                            \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                            \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{d2}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{colLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
           \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
-          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{2.8}\PY{p}{)}
           
           \PY{c+c1}{\PYZsh{}ax4 = fig.add\PYZus{}subplot(224)}
           
           \PY{c+c1}{\PYZsh{}ax4.axis(\PYZsq{}off\PYZsq{})}
-          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{d1}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                            \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                            \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{d1}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{colLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
           \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
-          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{2.8}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -678,33 +671,31 @@ serão apresentados a seguir para construção do trabalho.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}499}]:} \PY{c+c1}{\PYZsh{}Histograma dos atributos numéricos para }
+{\color{incolor}In [{\color{incolor}568}]:} \PY{c+c1}{\PYZsh{}Histograma dos atributos numéricos para}
           \PY{c+c1}{\PYZsh{}observar a distribuição na base de dados.}
           \PY{k}{def} \PY{n+nf}{histograma\PYZus{}analise}\PY{p}{(}\PY{p}{)}\PY{p}{:}
               \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}
               \PY{n}{font\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{15}
           
-              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
               \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
-              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           
-          
               \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
-              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}  \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
+              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taxa de entrega}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           
-          
               \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{223}\PY{p}{)}
-              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
+              \PY{n}{base}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           
               \PY{n}{dff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{base}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ID\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
               \PY{n}{dff}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-              \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+              \PY{n}{dff}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
               \PY{n}{ax8} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{224}\PY{p}{)}
           
-              \PY{n}{dff}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{)}
+              \PY{n}{dff}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade de pedidos por usuário}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           
           
@@ -713,7 +704,7 @@ serão apresentados a seguir para construção do trabalho.
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -747,13 +738,13 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}500}]:} \PY{c+c1}{\PYZsh{}Verificar quantas instâncias (linhas) e quantos atributos (colunas) tem a base}
+{\color{incolor}In [{\color{incolor}569}]:} \PY{c+c1}{\PYZsh{}Verificar quantas instâncias (linhas) e quantos atributos (colunas) tem a base}
           \PY{n}{base}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}500}]:} (24359, 18)
+{\color{outcolor}Out[{\color{outcolor}569}]:} (24359, 18)
 \end{Verbatim}
             
     \begin{itemize}
@@ -763,13 +754,13 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}501}]:} \PY{c+c1}{\PYZsh{}Verificar quantas instâncias (linhas) duplicadas}
+{\color{incolor}In [{\color{incolor}570}]:} \PY{c+c1}{\PYZsh{}Verificar quantas instâncias (linhas) duplicadas}
           \PY{n}{base}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}501}]:} 7
+{\color{outcolor}Out[{\color{outcolor}570}]:} 7
 \end{Verbatim}
             
     \begin{itemize}
@@ -779,13 +770,13 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}502}]:} \PY{c+c1}{\PYZsh{}Verificar quais são as instâncias duplicadas}
+{\color{incolor}In [{\color{incolor}571}]:} \PY{c+c1}{\PYZsh{}Verificar quais são as instâncias duplicadas}
           \PY{n}{base}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{base}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}502}]:}       DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
+{\color{outcolor}Out[{\color{outcolor}571}]:}       DATA\_PEDIDO HORA\_PEDIDO DIA\_PEDIDO  VALOR\_PRODUTOS  TAXA\_ENTREGA  \textbackslash{}
           1679   2016-09-17       23:25   Thursday            10.0           2.0   
           1680   2016-09-17       23:25   Thursday            10.0           2.0   
           11793  2016-09-24       21:27   Thursday             0.0           3.0   
@@ -846,7 +837,7 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}503}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{base}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{first}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}572}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{base}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{first}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -857,12 +848,12 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}504}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}573}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}504}]:} (24352, 18)
+{\color{outcolor}Out[{\color{outcolor}573}]:} (24352, 18)
 \end{Verbatim}
             
     \subsubsection{2. Valores ausentes}\label{valores-ausentes}
@@ -874,7 +865,7 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}505}]:} \PY{c+c1}{\PYZsh{}Gráfico que exibe a quantidade valores ausentes }
+{\color{incolor}In [{\color{incolor}574}]:} \PY{c+c1}{\PYZsh{}Gráfico que exibe a quantidade valores ausentes}
           \PY{c+c1}{\PYZsh{}para cada atributo da base}
           
           \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}
@@ -882,25 +873,27 @@ Após essa verificação, executamos as etapas de pré-processamento.
           \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{novaBase}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
           
           \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-          \PY{n}{ax8} \PY{o}{=}  \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{colspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
-          \PY{n}{grafico} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   
-                                 \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{,} 
-                                 \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                                 \PY{n}{edgecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                                 \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{ax8} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{colspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+          \PY{n}{grafico} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{barh}\PY{p}{(}
+              \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{)}\PY{p}{,}
+              \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,}
+              \PY{n}{ax}\PY{o}{=}\PY{n}{ax8}\PY{p}{,}
+              \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{n}{edgecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+              \PY{n}{legend}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
           \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores ausentes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           
           \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}
           \PY{n}{df}
-          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax8}\PY{p}{,} \PY{n}{df}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{colLoc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table} \PY{o}{=} \PY{n}{table}\PY{p}{(}\PY{n}{ax8}\PY{p}{,} \PY{n}{df}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{rowLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{colLoc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{auto\PYZus{}set\PYZus{}font\PYZus{}size}\PY{p}{(}\PY{k+kc}{False}\PY{p}{)}
           \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{set\PYZus{}fontsize}\PY{p}{(}\PY{n}{font\PYZus{}size}\PY{p}{)}
-          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{2.8}\PY{p}{)}
+          \PY{n}{mpl\PYZus{}table}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{2.8}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -913,13 +906,14 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}506}]:} \PY{c+c1}{\PYZsh{}(linha, coluna)}
-          \PY{n}{novaBase}\PY{p}{[}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZam{}} \PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BAIRRO\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}577}]:} \PY{c+c1}{\PYZsh{}(linha, coluna)}
+          \PY{n}{novaBase}\PY{p}{[}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}
+                   \PY{o}{\PYZam{}} \PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BAIRRO\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}506}]:} (260, 18)
+{\color{outcolor}Out[{\color{outcolor}577}]:} (260, 18)
 \end{Verbatim}
             
     \begin{itemize}
@@ -934,7 +928,8 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}507}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{subset}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BAIRRO\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}578}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}
+              \PY{n}{subset}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CIDADE\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BAIRRO\PYZus{}USUARIO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -947,12 +942,12 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}508}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}579}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}508}]:} (24092, 18)
+{\color{outcolor}Out[{\color{outcolor}579}]:} (24092, 18)
 \end{Verbatim}
             
     \begin{itemize}
@@ -964,19 +959,20 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}509}]:} \PY{k}{def} \PY{n+nf}{listar\PYZus{}ocorrencias\PYZus{}avaliacao}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
-              \PY{n}{r} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AVALIACAO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{n}{dropna}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}    
+{\color{incolor}In [{\color{incolor}580}]:} \PY{k}{def} \PY{n+nf}{listar\PYZus{}ocorrencias\PYZus{}avaliacao}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+              \PY{n}{r} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AVALIACAO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{n}{dropna}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
               \PY{n}{r}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
               \PY{n}{total} \PY{o}{=} \PY{n}{r}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
-              \PY{n}{r}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{(}\PY{n}{x}\PY{o}{/}\PY{n}{total}\PY{p}{)}\PY{p}{)}
+              \PY{n}{r}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantidade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{(}\PY{n}{x} \PY{o}{/} \PY{n}{total}\PY{p}{)}\PY{p}{)}
               \PY{k}{return} \PY{n}{r}
+          
           
           \PY{n}{listar\PYZus{}ocorrencias\PYZus{}avaliacao}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}509}]:}       Quantidade         \%
+{\color{outcolor}Out[{\color{outcolor}580}]:}       Quantidade         \%
           NaN        20503  0.851029
            5.0        2037  0.084551
            4.0         580  0.024074
@@ -999,13 +995,13 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}510}]:} \PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AVALIACAO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}581}]:} \PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AVALIACAO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
           \PY{n}{listar\PYZus{}ocorrencias\PYZus{}avaliacao}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}510}]:}      Quantidade         \%
+{\color{outcolor}Out[{\color{outcolor}581}]:}      Quantidade         \%
           0.0       20503  0.851029
           5.0        2037  0.084551
           4.0         580  0.024074
@@ -1026,22 +1022,23 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}511}]:} \PY{c+c1}{\PYZsh{}Verificando se a Data do pedido informada na base,}
+{\color{incolor}In [{\color{incolor}582}]:} \PY{c+c1}{\PYZsh{}Verificando se a Data do pedido informada na base,}
           \PY{c+c1}{\PYZsh{} confere com o Dia do pedido informado.}
           
-          \PY{n}{df} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{loc}\PY{p}{[} \PY{p}{:} \PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+          \PY{n}{df} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
           
-          \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado pela função)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
-                                       \PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}
-                                       \PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-                                       \PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado pela função)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}
+              \PY{n}{df}\PY{o}{.}\PY{n}{apply}\PY{p}{(}
+                  \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                  \PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                  \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
           
           \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}511}]:}   DATA\_PEDIDO DIA\_PEDIDO Dia do pedido (Verificado pela função)
+{\color{outcolor}Out[{\color{outcolor}582}]:}   DATA\_PEDIDO DIA\_PEDIDO Dia do pedido (Verificado pela função)
           0  2016-07-05     Sunday                                Tuesday
           1  2016-07-05     Sunday                                Tuesday
           2  2016-07-05     Sunday                                Tuesday
@@ -1063,14 +1060,14 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}512}]:} \PY{n}{filtrado} \PY{o}{=} \PY{n}{df1}\PY{p}{[}\PY{p}{(}\PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-                          \PY{o}{==} \PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado pela função)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}583}]:} \PY{n}{filtrado} \PY{o}{=} \PY{n}{df1}\PY{p}{[}\PY{p}{(}
+              \PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{df1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dia do pedido (Verificado pela função)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
           \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}512}]:} 0
+{\color{outcolor}Out[{\color{outcolor}583}]:} 0
 \end{Verbatim}
             
     \begin{itemize}
@@ -1081,7 +1078,7 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}513}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}584}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DIA\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -1092,12 +1089,12 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}514}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}585}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}514}]:} (24092, 17)
+{\color{outcolor}Out[{\color{outcolor}585}]:} (24092, 17)
 \end{Verbatim}
             
     \begin{itemize}
@@ -1110,22 +1107,17 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}515}]:} \PY{n}{df} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                                   \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
-          \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}
-                                             \PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
-                                             \PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} 
-                                              \PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
-                                                \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}586}]:} \PY{n}{df} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}
+                            \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+          \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}
+              \PY{n}{df}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TAXA\PYZus{}ENTREGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
           
           \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}515}]:}    VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
+{\color{outcolor}Out[{\color{outcolor}586}]:}    VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
           0            16.0           4.0          20.0  Entregue   
           1            28.0           4.0          32.0  Recusado   
           2            13.0           4.0          17.0  Recusado   
@@ -1157,15 +1149,14 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}541}]:} \PY{n}{filtrado\PYZus{}diferente} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}
-              \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} 
-              \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}587}]:} \PY{n}{filtrado\PYZus{}diferente} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df}\PY{p}{[}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False}\PY{p}{]}
           \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado\PYZus{}diferente}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}541}]:} 5
+{\color{outcolor}Out[{\color{outcolor}587}]:} 5
 \end{Verbatim}
             
     \begin{itemize}
@@ -1177,15 +1168,15 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}540}]:} \PY{n}{filtrado\PYZus{}para\PYZus{}mais} \PY{o}{=} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}
-              \PY{p}{(}\PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-              \PY{o}{\PYZgt{}} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}588}]:} \PY{n}{filtrado\PYZus{}para\PYZus{}mais} \PY{o}{=} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{p}{(}
+              \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}
+              \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
           \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}mais}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}540}]:} 0
+{\color{outcolor}Out[{\color{outcolor}588}]:} 0
 \end{Verbatim}
             
     \begin{itemize}
@@ -1195,16 +1186,16 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}539}]:} \PY{n}{filtrado\PYZus{}para\PYZus{}menos} \PY{o}{=} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}
-              \PY{p}{(}\PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-              \PY{o}{\PYZlt{}} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}589}]:} \PY{n}{filtrado\PYZus{}para\PYZus{}menos} \PY{o}{=} \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{p}{(}
+              \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}}
+              \PY{n}{filtrado\PYZus{}diferente}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total pedido (Verificado)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
           \PY{n}{recusados\PYZus{}esperado} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{)}
           \PY{n}{recusados\PYZus{}esperado}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}539}]:} 5
+{\color{outcolor}Out[{\color{outcolor}589}]:} 5
 \end{Verbatim}
             
     \begin{itemize}
@@ -1217,22 +1208,22 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}519}]:} \PY{n}{recusados} \PY{o}{=} \PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Recusado}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}590}]:} \PY{n}{recusados} \PY{o}{=} \PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Recusado}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
           \PY{n+nb}{len}\PY{p}{(}\PY{n}{recusados}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}519}]:} 4
+{\color{outcolor}Out[{\color{outcolor}590}]:} 4
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}520}]:} \PY{n}{recusados}
+{\color{incolor}In [{\color{incolor}591}]:} \PY{n}{recusados}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}520}]:}        VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
+{\color{outcolor}Out[{\color{outcolor}591}]:}        VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
           11793             0.0           3.0           0.0  Recusado   
           11804             0.0           3.0           0.0  Recusado   
           11805             0.0           3.0           0.0  Recusado   
@@ -1255,23 +1246,22 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}521}]:} \PY{n}{entregue} \PY{o}{=} \PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}
-              \PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Entregue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}592}]:} \PY{n}{entregue} \PY{o}{=} \PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{p}{(}\PY{n}{filtrado\PYZus{}para\PYZus{}menos}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STATUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Entregue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
           \PY{n+nb}{len}\PY{p}{(}\PY{n}{entregue}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}521}]:} 1
+{\color{outcolor}Out[{\color{outcolor}592}]:} 1
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}522}]:} \PY{n}{entregue}
+{\color{incolor}In [{\color{incolor}593}]:} \PY{n}{entregue}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}522}]:}        VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
+{\color{outcolor}Out[{\color{outcolor}593}]:}        VALOR\_PRODUTOS  TAXA\_ENTREGA  TOTAL\_PEDIDO    STATUS  \textbackslash{}
           22722            27.9          1.99          6.89  Entregue   
           
                  Total pedido (Verificado)  
@@ -1286,14 +1276,14 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}523}]:} \PY{n}{i} \PY{o}{=} \PY{n}{entregue}\PY{o}{.}\PY{n}{index}
+{\color{incolor}In [{\color{incolor}594}]:} \PY{n}{i} \PY{o}{=} \PY{n}{entregue}\PY{o}{.}\PY{n}{index}
           \PY{n}{novaBase} \PY{o}{=} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{i}\PY{p}{)}
           \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}523}]:} (24091, 17)
+{\color{outcolor}Out[{\color{outcolor}594}]:} (24091, 17)
 \end{Verbatim}
             
     \subsubsection{4. Outliers}\label{outliers}
@@ -1307,12 +1297,12 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}524}]:} \PY{n}{boxplot\PYZus{}analise}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}595}]:} \PY{n}{boxplot\PYZus{}analise}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_65_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_64_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1325,22 +1315,22 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}538}]:} \PY{k}{def} \PY{n+nf}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{n}{valor}\PY{p}{)}\PY{p}{:}
-              \PY{k}{return} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}
-                  \PY{n}{novaBase}\PY{p}{[}\PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{valor}\PY{p}{)} 
-                  \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{valor}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}
-              
+{\color{incolor}In [{\color{incolor}596}]:} \PY{k}{def} \PY{n+nf}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{n}{valor}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{valor}\PY{p}{)}
+                                            \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{valor}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+          
+          
           \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}526}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}597}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}526}]:} (23297, 17)
+{\color{outcolor}Out[{\color{outcolor}597}]:} (23297, 17)
 \end{Verbatim}
             
     \begin{itemize}
@@ -1350,25 +1340,25 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}527}]:} \PY{k}{def} \PY{n+nf}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}\PY{p}{:}
-              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}598}]:} \PY{k}{def} \PY{n+nf}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}\PY{p}{:}
+              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
               \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
-              \PY{n}{grafico} \PY{o}{=} \PY{n}{novaBase}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
-                                                 \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{novaBase}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VALOR\PYZus{}PRODUTOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}
+                  \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor dos produtos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
           
-          
               \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{222}\PY{p}{)}
-              \PY{n}{grafico} \PY{o}{=} \PY{n}{novaBase}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} 
-                                                   \PY{n}{fontsize}\PY{o}{=} \PY{n}{fontsize}\PY{p}{,}   \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
+              \PY{n}{grafico} \PY{o}{=} \PY{n}{novaBase}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}
+                  \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax7}\PY{p}{)}
               \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total de pedidos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-              
+          
+          
           \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_70_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_69_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1381,26 +1371,26 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}528}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{55}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}599}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{55}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}529}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}600}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}529}]:} (22908, 17)
+{\color{outcolor}Out[{\color{outcolor}600}]:} (22908, 17)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}530}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}601}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_74_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_73_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1412,28 +1402,30 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}531}]:} \PY{k}{def} \PY{n+nf}{remover\PYZus{}outliers\PYZus{}total\PYZus{}pedido}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{n}{valor}\PY{p}{)}\PY{p}{:}
+{\color{incolor}In [{\color{incolor}602}]:} \PY{k}{def} \PY{n+nf}{remover\PYZus{}outliers\PYZus{}total\PYZus{}pedido}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{n}{valor}\PY{p}{)}\PY{p}{:}
               \PY{k}{return} \PY{n}{novaBase}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{p}{(}\PY{n}{novaBase}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TOTAL\PYZus{}PEDIDO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{valor}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+          
+          
           \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers\PYZus{}total\PYZus{}pedido}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{55}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}532}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}603}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}532}]:} (22676, 17)
+{\color{outcolor}Out[{\color{outcolor}603}]:} (22676, 17)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}533}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}604}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_78_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_77_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1446,27 +1438,27 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}534}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{52}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}605}]:} \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{52}\PY{p}{)}
           \PY{n}{novaBase} \PY{o}{=} \PY{n}{remover\PYZus{}outliers\PYZus{}total\PYZus{}pedido}\PY{p}{(}\PY{n}{novaBase}\PY{p}{,} \PY{l+m+mi}{52}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}535}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}606}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}535}]:} (22429, 17)
+{\color{outcolor}Out[{\color{outcolor}606}]:} (22429, 17)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}536}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}607}]:} \PY{n}{boxplot\PYZus{}novaBase}\PY{p}{(}\PY{n}{novaBase}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_82_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_81_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1479,12 +1471,12 @@ Após essa verificação, executamos as etapas de pré-processamento.
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}537}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}608}]:} \PY{n}{novaBase}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}537}]:} (22429, 17)
+{\color{outcolor}Out[{\color{outcolor}608}]:} (22429, 17)
 \end{Verbatim}
             
 
